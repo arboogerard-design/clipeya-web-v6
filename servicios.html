@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Servicios · Clipeya AI Lab</title>
+<meta name="description" content="Qué hacemos según tu negocio: packs A y B, piezas sueltas y Todo llevado. El precio te lo pasamos por WhatsApp.">
+<meta name="theme-color" content="#0d0c0b">
+<link rel="icon" href="img/clipeya_spark_favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+/* Hallmark · custom · idea: la página de servicios de la galería, en tarjetas que se abren, sin 3D · genre: at · posture: restrained · modes: dark */
+/* Hallmark · pre-emit critique: P4 H4 E4 S4 R4 V4 · weakest: S, una lista de tarjetas que se abren la tiene cualquier estudio; lo propio es que cada una sale de lo que de verdad hacemos */
+/* servicios.html (v6): los 1.271 palabras de servicios y packs que ya no caben en la home, en tarjetas que se abren. Sin importes salvo «100 €». */
+@font-face{font-family:"Instrument Sans";src:url(fonts/instrumentsans-regular.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Instrument Sans";src:url(fonts/instrumentsans-bold.woff2) format("woff2");font-weight:600 700;font-display:swap}
+:root{--tinta:#0d0c0b;--panel:#151411;--papel:#ece7de;--gris-claro:#cfc8bb;--acento:#ff4d1f;--acento-hondo:#e23f12;--verde:#35c98a;
+  --acento-brillo:rgba(255,77,31,.16);--linea:rgba(236,231,222,.22);--linea-fuerte:rgba(236,231,222,.5);--v55:rgba(13,12,11,.55);--velo-nada:rgba(13,12,11,0);
+  --f-display:"Instrument Serif",Georgia,"Times New Roman",serif;--f-texto:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --curva:cubic-bezier(.16,.84,.24,1);--margen:clamp(16px,5vw,72px);--cuerpo:20px;interpolate-size:allow-keywords}
+@media (min-width:900px){:root{--cuerpo:24px}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:clip}
+body{margin:0;min-height:100vh;background:radial-gradient(ellipse 60% 40% at 85% 0%,var(--acento-brillo),var(--velo-nada) 70%),var(--tinta);color:var(--papel);font:400 var(--cuerpo)/1.45 var(--f-texto);overflow-x:clip}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--acento);outline-offset:4px;transition:none}
+header.cab{display:flex;justify-content:space-between;align-items:center;padding:20px var(--margen);max-width:1280px;margin:0 auto}
+header.cab img{height:26px;width:auto;display:block}
+header.cab a.volver{font-size:16px;font-weight:600;text-decoration:none;padding:8px 20px;min-height:44px;display:inline-flex;align-items:center;border:1px solid var(--linea);border-radius:999px}
+header.cab a.volver:hover{background-color:var(--papel);color:var(--tinta)}
+header.cab > a:first-child{display:inline-flex;align-items:center;min-height:44px}
+main{max-width:1280px;margin:0 auto;padding:clamp(24px,6vh,64px) var(--margen) 64px}
+h1,h2,h3{font-family:var(--f-display);font-weight:400;margin:0;text-wrap:balance}
+h1{font-size:clamp(52px,9vw,140px);line-height:.92;letter-spacing:-.03em;margin-bottom:.2em}
+h2{font-size:clamp(40px,5vw,72px);line-height:.96;letter-spacing:-.02em;margin:clamp(48px,8vh,96px) 0 .4em}
+.nota{margin:0 0 1.4em;font-size:var(--cuerpo);color:var(--gris-claro)}
+.fichas{margin-top:clamp(16px,3vh,32px)}
+.ficha{border-top:1px solid var(--linea)}
+.ficha:last-child{border-bottom:1px solid var(--linea)}
+.ficha summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:1fr 44px;column-gap:16px;row-gap:2px;align-items:center;padding:20px 0;min-height:44px}
+.ficha summary::-webkit-details-marker{display:none}
+.ficha .nombre{font:400 clamp(36px,4vw,60px)/1.05 var(--f-display);transition:color .3s var(--curva)}
+.ficha .linea{grid-column:1;color:var(--gris-claro);font-size:var(--cuerpo)}
+.ficha .mas{grid-column:2;grid-row:1 / span 2;justify-self:end;position:relative;width:44px;height:44px;border:1px solid var(--linea);border-radius:50%;transition:transform .45s var(--curva),background-color .3s var(--curva),border-color .3s var(--curva)}
+.ficha .mas::before,.ficha .mas::after{content:"";position:absolute;left:50%;top:50%;width:16px;height:1.5px;background-color:var(--papel);transform:translate(-50%,-50%)}
+.ficha .mas::after{transform:translate(-50%,-50%) rotate(90deg)}
+.ficha summary:hover .mas{border-color:var(--papel)}
+.ficha[open] .mas{transform:rotate(45deg);background-color:var(--acento);border-color:var(--acento)}
+.ficha[open] .mas::before,.ficha[open] .mas::after{background-color:var(--tinta)}
+@media (min-width:900px){
+  .ficha summary{grid-template-columns:minmax(14rem,24rem) 1fr 44px;align-items:center}
+  .ficha .linea{grid-column:2}
+  .ficha .mas{grid-column:3;grid-row:1}
+  .ficha summary:hover .nombre{color:var(--acento)}
+}
+.ficha::details-content{block-size:0;overflow:clip;transition:block-size .5s var(--curva),content-visibility .5s allow-discrete}
+.ficha[open]::details-content{block-size:auto}
+.detalle{padding:4px 0 32px}
+.packs{display:grid;gap:28px}
+@media (min-width:760px){.packs{grid-template-columns:1fr 1fr;gap:0}.pack + .pack{border-left:1px solid var(--linea);padding-left:36px}.pack:first-child{padding-right:36px}}
+.pack .letra{display:grid;place-items:center;width:40px;height:40px;margin:0 0 8px;border-radius:50%;background-color:var(--acento);color:var(--tinta);font:600 var(--cuerpo)/1 var(--f-texto)}
+.pack .nombre-pack{display:block;margin:0 0 16px;font:400 clamp(34px,3vw,46px)/1.05 var(--f-display)}
+ul{margin:0 0 20px;padding:0;list-style:none}
+li{position:relative;padding-left:24px;margin:0 0 8px;font-size:var(--cuerpo);line-height:1.35}
+li::before{content:"";position:absolute;left:2px;top:.66em;width:9px;height:1.5px;background-color:var(--acento)}
+.sueltos{display:grid;gap:24px 32px;margin-bottom:24px}
+@media (min-width:760px){.sueltos{grid-template-columns:repeat(auto-fit,minmax(18rem,1fr))}}
+.sueltos .titulo{margin:0 0 12px;font:600 var(--cuerpo)/1.3 var(--f-texto);color:var(--gris-claro)}
+.cifra{color:var(--acento);font-weight:600;white-space:nowrap}
+.boton{display:inline-flex;align-items:center;justify-content:center;min-height:60px;padding:0 32px;border-radius:999px;font:600 var(--cuerpo)/1 var(--f-texto);text-decoration:none;border:1px solid var(--linea-fuerte);background-color:transparent;color:var(--papel);transition:transform .35s var(--curva),background-color .35s var(--curva),color .35s var(--curva),border-color .35s var(--curva)}
+.boton:hover{background-color:var(--papel);color:var(--tinta);border-color:var(--papel);transform:translateY(-2px)}
+.boton:active{transform:translateY(0) scale(.98)}
+.ficha summary:active .nombre{opacity:.7}
+.duda{border-top:1px solid var(--linea)}
+.duda:last-child{border-bottom:1px solid var(--linea)}
+.duda summary{list-style:none;cursor:pointer;padding:16px 44px 16px 0;position:relative;font-size:var(--cuerpo);font-weight:600;min-height:44px}
+.duda summary::-webkit-details-marker{display:none}
+.duda summary::after{content:"";position:absolute;right:8px;top:50%;width:10px;height:10px;border-right:1.5px solid var(--papel);border-bottom:1.5px solid var(--papel);transform:translateY(-70%) rotate(45deg);transition:transform .4s var(--curva)}
+.duda[open] summary::after{transform:translateY(-30%) rotate(-135deg)}
+.duda p{margin:0 0 16px;font-size:var(--cuerpo);color:var(--gris-claro)}
+.duda::details-content{block-size:0;overflow:clip;transition:block-size .45s var(--curva),content-visibility .45s allow-discrete}
+.duda[open]::details-content{block-size:auto}
+.siempre{margin:32px 0 0;font-size:var(--cuerpo);color:var(--gris-claro)}
+.siempre strong{color:var(--papel);font-weight:600}
+.somos{display:flex;gap:20px;align-items:center;margin-top:28px;padding-top:24px;border-top:1px solid var(--linea)}
+.somos img{width:44px;height:44px;flex:none}
+.somos p{margin:0;font-size:var(--cuerpo)}
+#legal p{margin:0;font-size:var(--cuerpo);color:var(--gris-claro);max-width:44em}
+footer.pie{max-width:1280px;margin:0 auto;padding:24px var(--margen) 40px;border-top:1px solid var(--linea);font-size:16px;color:var(--gris-claro)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.ficha::details-content,.duda::details-content{transition:none}.boton,.ficha .mas{transition:none}}
+</style>
+</head>
+<body>
+<header class="cab">
+  <a href="index.html" aria-label="Clipeya AI Lab, inicio"><img src="img/clipeya_spark_horizontal_oscuro.svg" alt="Clipeya AI Lab" width="107" height="26"></a>
+  <a class="volver" href="index.html">Inicio</a>
+</header>
+<main>
+  <h1>¿Qué negocio tienes?</h1>
+  <p class="nota">El precio te lo pasamos por WhatsApp.</p>
+  <div class="fichas"><details class="ficha" name="ficha" id="tienda"><summary><span class="nombre">Tienda online</span><span class="linea">Vendes un producto físico online</span><span class="mas" aria-hidden="true"></span></summary><div class="detalle"><div class="packs"><div class="pack"><p class="letra">A</p><p class="nombre-pack">Tienda en marcha</p><ul><li>Tienda Shopify montada</li><li>2 landings de producto</li><li>Carritos recuperados por WhatsApp</li></ul><a class="boton claro" href="https://wa.me/34600235411?text=Hola%2C%20me%20interesa%20el%20pack%20%C2%ABTienda%20en%20marcha%C2%BB%20de%20Clipeya.%20Mi%20enlace%20es%3A%20" target="_blank" rel="noopener">Quiero este pack</a></div><div class="pack"><p class="letra">B</p><p class="nombre-pack">Tienda que crece</p><ul><li>Todo el pack A</li><li>ManyChat y chatbot</li><li>Panel de ventas</li></ul><a class="boton claro" href="https://wa.me/34600235411?text=Hola%2C%20me%20interesa%20el%20pack%20%C2%ABTienda%20que%20crece%C2%BB%20de%20Clipeya.%20Mi%20enlace%20es%3A%20" target="_blank" rel="noopener">Quiero este pack</a></div></div></div></details><details class="ficha" name="ficha" id="curso"><summary><span class="nombre">Curso o academia</span><span class="linea">Vendes un curso, mentoría o formación</span><span class="mas" aria-hidden="true"></span></summary><div class="detalle"><div class="packs"><div class="pack"><p class="letra">A</p><p class="nombre-pack">Embudo de captación</p><ul><li>Página de registro</li><li>ManyChat entrega el regalo</li><li>CRM con fases</li></ul><a class="boton claro" href="https://wa.me/34600235411?text=Hola%2C%20me%20interesa%20el%20pack%20%C2%ABEmbudo%20de%20captaci%C3%B3n%C2%BB%20de%20Clipeya.%20Mi%20enlace%20es%3A%20" target="_blank" rel="noopener">Quiero este pack</a></div><div class="pack"><p class="letra">B</p><p class="nombre-pack">Webinar o vídeo</p><ul><li>Todo el pack A</li><li>Páginas de venta</li><li>Recordatorios y seguimiento</li></ul><a class="boton claro" href="https://wa.me/34600235411?text=Hola%2C%20me%20interesa%20el%20pack%20%C2%ABWebinar%20o%20v%C3%ADdeo%20de%20venta%C2%BB%20de%20Clipeya.%20Mi%20enlace%20es%3A%20" target="_blank" rel="noopener">Quiero este pack</a></div></div></div></details><details class="ficha" name="ficha" id="marca"><summary><span class="nombre">Marca personal</span><span class="linea">Tienes seguidores y quieres conversaciones</span><span class="mas" aria-hidden="true"></span></summary><div class="detalle"><div class="packs"><div class="pack"><p class="letra">A</p><p class="nombre-pack">Tu enlace vende</p><ul><li>Página personal</li><li>Comentan, reciben el recurso</li><li>Lista de contactos</li></ul><a class="boton claro" href="https://wa.me/34600235411?text=Hola%2C%20me%20interesa%20el%20pack%20%C2%ABTu%20enlace%20vende%C2%BB%20de%20Clipeya.%20Mi%20enlace%20es%3A%20" target="_blank" rel="noopener">Quiero este pack</a></div><div class="pack"><p class="letra">B</p><p class="nombre-pack">Sistema de contactos</p><ul><li>Todo el pack A</li><li>Embudo con regalo</li><li>CRM con agenda</li></ul><a class="boton claro" href="https://wa.me/34600235411?text=Hola%2C%20me%20interesa%20el%20pack%20%C2%ABSistema%20de%20contactos%C2%BB%20de%20Clipeya.%20Mi%20enlace%20es%3A%20" target="_blank" rel="noopener">Quiero este pack</a></div></div></div></details><details class="ficha" name="ficha" id="agencia"><summary><span class="nombre">Agencia</span><span class="linea">Tienes clientes y necesitas un equipo</span><span class="mas" aria-hidden="true"></span></summary><div class="detalle"><div class="packs"><div class="pack"><p class="letra">A</p><p class="nombre-pack">5 piezas al mes</p><ul><li>5 piezas al mes</li><li>Con tu marca</li><li>Plazo de 3 días</li></ul><a class="boton claro" href="https://wa.me/34600235411?text=Hola%2C%20me%20interesa%20el%20pack%20%C2%ABEquipo%205%C2%BB%20de%20Clipeya.%20Mi%20enlace%20es%3A%20" target="_blank" rel="noopener">Quiero este pack</a></div><div class="pack"><p class="letra">B</p><p class="nombre-pack">10 piezas al mes</p><ul><li>10 piezas al mes</li><li>Prioridad en la cola</li><li>Revisión semanal contigo</li></ul><a class="boton claro" href="https://wa.me/34600235411?text=Hola%2C%20me%20interesa%20el%20pack%20%C2%ABEquipo%2010%C2%BB%20de%20Clipeya.%20Mi%20enlace%20es%3A%20" target="_blank" rel="noopener">Quiero este pack</a></div></div></div></details><details class="ficha" name="ficha" id="tareas"><summary><span class="nombre">Automatizar tareas</span><span class="linea">Tu equipo pierde horas en tareas repetidas</span><span class="mas" aria-hidden="true"></span></summary><div class="detalle"><div class="packs"><div class="pack"><p class="letra">A</p><p class="nombre-pack">Tareas en automático</p><ul><li>3 automatizaciones</li><li>Avisos al equipo</li><li>Informe automático mensual</li></ul><a class="boton claro" href="https://wa.me/34600235411?text=Hola%2C%20me%20interesa%20el%20pack%20%C2%ABTareas%20en%20autom%C3%A1tico%C2%BB%20de%20Clipeya.%20Mi%20enlace%20es%3A%20" target="_blank" rel="noopener">Quiero este pack</a></div><div class="pack"><p class="letra">B</p><p class="nombre-pack">Negocio en automático</p><ul><li>Todo el pack A</li><li>Recordatorios por WhatsApp</li><li>Manual de operación</li></ul><a class="boton claro" href="https://wa.me/34600235411?text=Hola%2C%20me%20interesa%20el%20pack%20%C2%ABNegocio%20en%20autom%C3%A1tico%C2%BB%20de%20Clipeya.%20Mi%20enlace%20es%3A%20" target="_blank" rel="noopener">Quiero este pack</a></div></div></div></details><details class="ficha" name="ficha" id="chat"><summary><span class="nombre">Conversaciones</span><span class="linea">Te escriben y no llegas a contestar</span><span class="mas" aria-hidden="true"></span></summary><div class="detalle"><div class="packs"><div class="pack"><p class="letra">A</p><p class="nombre-pack">Responde solo</p><ul><li>Del comentario al contacto</li><li>Chatbot de atención</li><li>Lista de contactos</li></ul><a class="boton claro" href="https://wa.me/34600235411?text=Hola%2C%20me%20interesa%20el%20pack%20%C2%ABResponde%20solo%C2%BB%20de%20Clipeya.%20Mi%20enlace%20es%3A%20" target="_blank" rel="noopener">Quiero este pack</a></div><div class="pack"><p class="letra">B</p><p class="nombre-pack">Chat que vende</p><ul><li>Todo el pack A</li><li>Chat que agenda llamadas</li><li>Recordatorios de cita</li></ul><a class="boton claro" href="https://wa.me/34600235411?text=Hola%2C%20me%20interesa%20el%20pack%20%C2%ABChat%20que%20vende%C2%BB%20de%20Clipeya.%20Mi%20enlace%20es%3A%20" target="_blank" rel="noopener">Quiero este pack</a></div></div></div></details><details class="ficha" name="ficha" id="crm"><summary><span class="nombre">CRM y medición</span><span class="linea">No sabes de dónde vienen las ventas</span><span class="mas" aria-hidden="true"></span></summary><div class="detalle"><div class="packs"><div class="pack"><p class="letra">A</p><p class="nombre-pack">Contactos en orden</p><ul><li>CRM con fases</li><li>Agenda de llamadas</li><li>2 automatizaciones de seguimiento</li></ul><a class="boton claro" href="https://wa.me/34600235411?text=Hola%2C%20me%20interesa%20el%20pack%20%C2%ABContactos%20en%20orden%C2%BB%20de%20Clipeya.%20Mi%20enlace%20es%3A%20" target="_blank" rel="noopener">Quiero este pack</a></div><div class="pack"><p class="letra">B</p><p class="nombre-pack">Todo medido</p><ul><li>Todo el pack A</li><li>Panel de medición</li><li>Informe automático semanal</li></ul><a class="boton claro" href="https://wa.me/34600235411?text=Hola%2C%20me%20interesa%20el%20pack%20%C2%ABTodo%20medido%C2%BB%20de%20Clipeya.%20Mi%20enlace%20es%3A%20" target="_blank" rel="noopener">Quiero este pack</a></div></div></div></details><details class="ficha" name="ficha" id="suelto"><summary><span class="nombre">Algo suelto</span><span class="linea">Una pieza o un añadido</span><span class="mas" aria-hidden="true"></span></summary><div class="detalle"><div class="sueltos"><div class="grupo"><p class="titulo">Páginas y tiendas</p><ul><li>Landing o página de producto <span class="cifra">100 €</span></li><li>Tienda Shopify montada o rehecha</li><li>Página personal o de enlaces</li><li>Cuidado mensual de la web o tienda</li></ul></div><div class="grupo"><p class="titulo">Embudos</p><ul><li>Embudo de captación con regalo</li><li>Embudo de vídeo de venta</li><li>Embudo de webinar en directo</li><li>Agenda de llamadas conectada</li></ul></div><div class="grupo"><p class="titulo">Conversaciones</p><ul><li>Comentan una palabra y reciben el recurso</li><li>Chat que cualifica y agenda</li><li>Carritos recuperados por WhatsApp</li><li>Chatbot de atención</li><li>Recordatorios por SMS o WhatsApp</li></ul></div><div class="grupo"><p class="titulo">Procesos y paneles</p><ul><li>Automatización de una tarea repetida</li><li>Informe automático semanal o mensual</li><li>Manual de operación paso a paso</li><li>CRM con fases de venta</li><li>Panel de medición</li><li>Panel comercial por persona</li></ul></div><div class="grupo"><p class="titulo">Para agencias y a medida</p><ul><li>Radar de clientes</li><li>App o asistente con IA para tu negocio</li><li>Anuncios y creatividades</li></ul></div></div><a class="boton claro" href="https://wa.me/34600235411?text=Hola%2C%20quiero%20una%20pieza%20suelta%20de%20Clipeya.%20Mi%20enlace%20es%3A%20" target="_blank" rel="noopener">Pedir una pieza</a></div></details><details class="ficha" name="ficha" id="llevado"><summary><span class="nombre">Todo llevado</span><span class="linea">Te llevamos la parte digital</span><span class="mas" aria-hidden="true"></span></summary><div class="detalle"><ul class="vinetas"><li>Piezas nuevas cada mes</li><li>Reunión mensual con cifras</li><li>Arreglos en el día</li></ul><p class="nota">Tras 2 meses con un pack.</p><a class="boton claro" href="https://wa.me/34600235411?text=Hola%2C%20quiero%20hablar%20de%20%C2%ABTodo%20llevado%C2%BB%20con%20Clipeya." target="_blank" rel="noopener">Quiero hablar</a></div></details></div>
+
+  <h2>Dudas, resueltas.</h2>
+  <div class="dudas"><details class="duda" name="duda"><summary>¿Cuánto tarda una página?</summary><p>Una página de producto para el móvil, en 3 días. En agencias, 3 días por pieza.</p></details><details class="duda" name="duda"><summary>¿La web es mía?</summary><p>Sí. Todo lo que entregamos es tuyo y tus cuentas siguen a tu nombre.</p></details><details class="duda" name="duda"><summary>¿Y si quiero parar?</summary><p>No hay permanencia. Si paras, terminamos de entregarte el mes que ya has pagado.</p></details><details class="duda" name="duda"><summary>¿Qué pago aparte?</summary><p>Los anuncios, las cuotas de las herramientas y el coste de los mensajes. Los precios van sin IVA.</p></details><details class="duda" name="duda"><summary>¿Cuándo se paga?</summary><p>Por adelantado: el inicio antes de empezar y cada mes al comenzarlo.</p></details><details class="duda" name="duda"><summary>¿Me prometéis ventas?</summary><p>No. Te entregamos lo acordado y lo vigilamos cada mes, pero no prometemos cifras de ventas.</p></details></div>
+  <p class="siempre"><strong>Siempre:</strong> sin permanencia. Lo que entregamos es tuyo y tus cuentas siguen a tu nombre.</p>
+  <div class="somos">
+    <img src="img/clipeya_spark_favicon.svg" alt="" width="44" height="44">
+    <p><strong>Somos Gerard y Andy.</strong> Clipeya AI Lab es nuestro estudio.</p>
+  </div>
+
+  <h2 id="legal">Aviso legal</h2>
+  <!-- PENDIENTE (no inventar): titular, NIF, dirección y correo los da Gerard. Hasta entonces la web NO se publica. -->
+  <div id="legal-datos"><p data-pendiente>Datos del titular: pendientes de Gerard.</p></div>
+</main>
+<footer class="pie">Clipeya AI Lab</footer>
+<script>
+  // servicios.html#tienda abre esa tarjeta (los chips de la home enlazan aquí si no hay JS)
+  function abrirHash() {
+    const d = location.hash && document.querySelector('details.ficha' + location.hash);
+    if (d) { d.open = true; d.scrollIntoView({ block: 'start' }); }
+  }
+  addEventListener('hashchange', abrirHash); abrirHash();
+</script>
+</body>
+</html>

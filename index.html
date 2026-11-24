@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Clipeya AI Lab</title>
+<meta name="description" content="Webs, tiendas, CRM, chat y automatizaciones para negocios que venden online. Una página de producto para el móvil, lista en 3 días.">
+<meta name="theme-color" content="#0d0c0b">
+<link rel="icon" href="img/clipeya_spark_favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js" crossorigin>
+<style>
+/* Hallmark · custom · idea: una galería circular de noche con nuestras obras reales colgadas; se entra bajando y se elige negocio tocando la pared · genre: at · posture: restrained · modes: dark */
+/* Hallmark · pre-emit critique: P4 H4 E4 S4 R4 V5 · weakest: S, una galería 3D la puede tener cualquier estudio; la hace nuestra que cada pared es una web hecha por nosotros y la última pared está vacía para la tienda del visitante */
+/* v6 «Dentro de la sala» · la galería 3D de la v4 sin la página de texto debajo: una frase corta por parada (PLAN_V6.md, 24-nov-2026) */
+@font-face{font-family:"Instrument Sans";src:url(fonts/instrumentsans-regular.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Instrument Sans";src:url(fonts/instrumentsans-bold.woff2) format("woff2");font-weight:600 700;font-display:swap}
+:root{
+  --tinta:#0d0c0b;
+  --panel:#151411;
+  --papel:#ece7de;
+  --gris:#aaa398;
+  --gris-claro:#cfc8bb;
+  --acento:#ff4d1f;
+  --acento-hondo:#e23f12;
+  --linea:rgba(236,231,222,.22);
+  --linea-suave:rgba(236,231,222,.12);
+  --linea-fuerte:rgba(236,231,222,.5);
+  --v92:rgba(13,12,11,.92);
+  --v90:rgba(13,12,11,.9);
+  --v80:rgba(13,12,11,.8);
+  --v78:rgba(13,12,11,.78);
+  --v55:rgba(13,12,11,.55);
+  --v45:rgba(13,12,11,.45);
+  --velo-medio:rgba(13,12,11,.5);
+  --velo-nada:rgba(13,12,11,0);
+  --cristal-a:rgba(40,37,32,.95);
+  --cristal-b:rgba(21,20,17,.92);
+  --acento-suave:rgba(255,77,31,.1);
+  --sombra:rgba(0,0,0,.5);
+  --f-display:"Instrument Serif",Georgia,"Times New Roman",serif;
+  --f-texto:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --curva:cubic-bezier(.16,.84,.24,1);
+  --azul:#4c93ff;
+  --verde:#35c98a;
+  --margen:clamp(16px,5vw,72px);
+  --ancho:1280px;
+  --cuerpo:20px;
+  interpolate-size:allow-keywords;
+}
+@media (min-width:900px){:root{--cuerpo:24px}}
+*{box-sizing:border-box}
+html,body{overflow-x:clip;touch-action:pan-y pinch-zoom}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--tinta);color:var(--papel);font:400 var(--cuerpo)/1.45 var(--f-texto)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--acento);outline-offset:4px;transition:none}
+
+#respaldo,#escena{position:fixed;inset:0;width:100%;height:100%}
+#respaldo{background:var(--tinta) url(img/respaldo.jpg) center/cover no-repeat}
+#escena{display:block;opacity:0;transition:opacity 1.4s var(--curva)}
+#escena.lista{opacity:1}
+.velo{position:fixed;inset:0;pointer-events:none;background:linear-gradient(to top,var(--v92) 0%,var(--v78) 30%,var(--v55) 44%,var(--velo-nada) 56%)}
+@media (min-width:900px){.velo{background:linear-gradient(90deg,var(--v92) 0%,var(--v90) 26%,var(--v45) 40%,var(--velo-nada) 52%),linear-gradient(to top,var(--velo-medio) 0%,var(--velo-nada) 30%)}}
+.velo,.velo-portada{transition:opacity .8s var(--curva)}
+.velo-portada{position:fixed;inset:0;pointer-events:none;opacity:0;background:radial-gradient(ellipse 70% 56% at 50% 62%,var(--v78) 0%,var(--velo-medio) 50%,var(--velo-nada) 100%),linear-gradient(to top,var(--velo-medio) 0%,var(--velo-nada) 28%)}
+.en-portada .velo{opacity:0}
+.en-portada .velo-portada{opacity:1}
+.velo-arriba{position:fixed;left:0;right:0;top:0;height:136px;z-index:3;pointer-events:none;background:linear-gradient(to bottom,var(--v92) 0%,var(--v92) 42%,var(--v55) 72%,var(--velo-nada) 100%)}
+
+.cabecera{position:fixed;top:0;left:0;right:0;z-index:4;display:flex;justify-content:space-between;align-items:center;padding:20px var(--margen);max-width:calc(var(--ancho) + 2 * var(--margen));margin:0 auto}
+.cabecera img{height:26px;width:auto;display:block}
+.cabecera a.hablar{font-size:16px;font-weight:600;text-decoration:none;padding:8px 20px;min-height:44px;display:inline-flex;align-items:center;border:1px solid var(--linea);border-radius:999px;background-color:var(--v78);transition:background-color .3s var(--curva),border-color .3s var(--curva),color .3s var(--curva)}
+.cabecera > a:first-child{display:inline-flex;align-items:center;min-height:44px}
+.cabecera a.hablar:hover{background-color:var(--papel);color:var(--tinta);border-color:var(--papel)}
+
+main{position:relative;z-index:2}
+.pantalla{position:relative;min-height:100svh;display:flex;align-items:flex-end;padding:96px var(--margen) clamp(32px,8vh,88px);max-width:calc(var(--ancho) + 2 * var(--margen));margin:0 auto}
+@media (min-width:900px){.pantalla{align-items:center}}
+.caja{position:relative;max-width:34rem;min-width:0}
+.caja::before{content:"";position:absolute;inset:-14% -22%;z-index:-1;pointer-events:none;background:radial-gradient(closest-side,var(--v55) 0%,var(--velo-nada) 100%)}
+@media (min-width:900px){.obra .caja,.pared .caja{max-width:min(31rem,31vw)}}
+.portada{justify-content:center;text-align:center;align-items:center}
+.portada .caja{max-width:66rem;margin-top:14vh}
+.portada .caja::before{inset:-10% -6%;background:radial-gradient(closest-side,var(--v78) 0%,var(--v55) 58%,var(--velo-nada) 100%)}
+@media (min-width:900px){.portada .caja{margin-top:18vh}}
+
+h1,h2,h3,h4{font-weight:400;margin:0;overflow-wrap:break-word;min-width:0;text-wrap:balance}
+h1,h2,h3{font-family:var(--f-display)}
+h1{font-size:clamp(56px,11.5vw,190px);line-height:.9;letter-spacing:-.03em;margin-bottom:.3em}
+h2{font-size:clamp(46px,12vw,72px);line-height:.94;letter-spacing:-.02em;margin-bottom:.34em}
+@media (min-width:900px){h2{font-size:clamp(60px,6.6vw,108px)}}
+.frase,.nota,.etiqueta{font-size:var(--cuerpo);line-height:1.4;margin:0 0 1em;text-wrap:pretty}
+.frase{color:var(--papel)}
+.nota{color:var(--gris-claro)}
+.etiqueta{display:inline-block;padding:8px 20px;border:1.5px solid var(--acento);border-radius:999px;color:var(--acento);font-weight:600;margin:0 0 .8em}
+.portada .frase{margin-left:auto;margin-right:auto}
+
+.acciones{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.boton{display:inline-flex;align-items:center;justify-content:center;min-height:60px;padding:0 32px;border-radius:999px;font:600 var(--cuerpo)/1 var(--f-texto);text-decoration:none;border:1px solid transparent;cursor:pointer;transition:transform .35s var(--curva),background-color .35s var(--curva),border-color .35s var(--curva),color .35s var(--curva)}
+.boton{background-color:var(--acento);color:var(--tinta)}
+.boton:hover{background-color:var(--acento-hondo);transform:translateY(-2px)}
+.boton.claro{background-color:var(--v55);color:var(--papel);border-color:var(--linea-fuerte)}
+.boton.claro:hover{border-color:var(--papel);background-color:var(--papel);color:var(--tinta)}
+.boton:active{transform:translateY(0) scale(.98)}
+.boton:disabled{opacity:.5;cursor:not-allowed;transform:none}
+
+/* pantalla 5: la pared de 7 negocios (chips + una tarjeta de cristal) */
+.pared h2{font-size:clamp(46px,11vw,64px);margin-bottom:.3em}
+@media (min-width:900px){.pared h2{font-size:clamp(52px,5vw,84px)}}
+/* móvil: con una tarjeta abierta, el nombre grande del panel 3D ya hace de titular; el h2 se aparta para no taparse con él (solo opacity) */
+.js .pared h2{transition:opacity .35s var(--curva),transform .9s var(--curva)}
+@media (max-width:899px){.js .pared.abierta .caja > h2{opacity:0}}
+.negocios{display:flex;flex-wrap:wrap;gap:12px;margin:0 0 16px;padding:0;list-style:none}
+.negocios a{display:inline-flex;align-items:center;min-height:52px;padding:0 20px;border:1px solid var(--linea-fuerte);border-radius:999px;background-color:var(--v80);color:var(--papel);font:400 clamp(26px,2.1vw,32px)/1 var(--f-display);text-decoration:none;cursor:pointer;transition:transform .35s var(--curva),background-color .35s var(--curva),border-color .35s var(--curva),color .35s var(--curva)}
+.negocios a:hover{border-color:var(--papel);transform:translateY(-2px)}
+.negocios a[aria-expanded="true"]{background-color:var(--acento);border-color:var(--acento);color:var(--tinta)}
+.tarjeta{position:relative;margin:0;padding:16px 20px;border:1px solid var(--linea-fuerte);border-radius:22px;background:linear-gradient(160deg,var(--cristal-a),var(--cristal-b))}
+.tarjeta[hidden]{display:none}
+.tarjeta.entra{animation:entra-tarjeta .55s var(--curva) both}
+@keyframes entra-tarjeta{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
+.t-nombre{margin:0 0 12px;font:400 clamp(36px,2.8vw,44px)/1 var(--f-display);padding-right:48px}
+.t-pack{display:flex;align-items:center;gap:12px;width:100%;min-height:56px;margin:0 0 8px;padding:4px 16px;border:1px solid var(--linea);border-radius:16px;background:transparent;color:var(--papel);font:400 var(--cuerpo)/1.2 var(--f-texto);text-align:left;cursor:pointer;transition:border-color .3s var(--curva),background-color .3s var(--curva)}
+.t-pack::before{content:attr(data-pack);flex:none;display:grid;place-items:center;width:34px;height:34px;border:1px solid var(--linea-fuerte);border-radius:50%;font:600 16px/1 var(--f-texto);transition:background-color .3s var(--curva),color .3s var(--curva),border-color .3s var(--curva)}
+.t-pack:hover{border-color:var(--papel)}
+.t-pack[aria-checked="true"]{border-color:var(--acento);background-color:var(--acento-suave)}
+.t-pack[aria-checked="true"]::before{background-color:var(--acento);border-color:var(--acento);color:var(--tinta)}
+.t-escribir{width:100%;margin-top:8px;min-height:56px}
+.t-cerrar{position:absolute;right:12px;top:12px;width:44px;height:44px;border:1px solid var(--linea);border-radius:50%;background:transparent;color:var(--papel);font:400 28px/1 var(--f-texto);cursor:pointer;transition:background-color .3s var(--curva),color .3s var(--curva)}
+.t-cerrar:hover{background-color:var(--papel);color:var(--tinta)}
+
+/* pantalla 6: cuatro números enormes que se rellenan con el scroll */
+.como{display:block;height:340svh;padding:0}
+.como .pegado{position:sticky;top:0;height:100svh;display:flex;align-items:center;padding:96px var(--margen) 32px}
+.como .caja{max-width:none;width:100%;background-color:var(--v80);border:1px solid var(--linea-suave);border-radius:24px;padding:clamp(20px,3vw,44px)}
+.como .caja::before{display:none}
+.como h2{margin-bottom:.2em}
+.pasos{list-style:none;margin:clamp(12px,3vh,32px) 0 0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:20px 16px;counter-reset:paso}
+@media (min-width:900px){.pasos{grid-template-columns:repeat(4,1fr);gap:32px}}
+.pasos li{counter-increment:paso;position:relative;border-top:1px solid var(--linea);padding-top:8px}
+.pasos li::before,.pasos li::after{content:counter(paso);display:block;font:400 clamp(120px,11vw,190px)/.95 var(--f-display);letter-spacing:-.03em}
+.pasos li::before{color:transparent;-webkit-text-stroke:1.5px var(--linea-fuerte)}
+.pasos li::after{position:absolute;left:0;top:8px;color:var(--acento);transition:opacity .7s var(--curva)}
+.js .pasos li:not(.hecho)::after{opacity:0}
+.pasos .paso{display:block;margin-top:4px;font:400 clamp(30px,2.8vw,46px)/1.1 var(--f-display)}
+
+/* pantalla 7: cierre, un solo campo y un solo botón */
+form.enlace{display:flex;gap:12px;flex-wrap:wrap;margin:0 0 12px}
+form.enlace input{flex:1 1 15rem;min-width:0;min-height:60px;padding:0 24px;border-radius:999px;border:1px solid var(--linea-fuerte);background-color:var(--panel);color:var(--papel);font:400 var(--cuerpo)/1 var(--f-texto)}
+form.enlace input::placeholder{color:var(--gris-claro)}
+form.enlace input:focus-visible{outline-offset:2px}
+form.enlace .boton{flex:1 1 auto}
+@media (max-width:899px){
+  #empezar .caja{width:100%;max-width:40rem;background-color:var(--panel);border:1px solid var(--linea-suave);border-radius:24px;padding:24px}
+  #empezar .caja::before{display:none}
+}
+.error{color:var(--acento);font-size:var(--cuerpo);margin:0 0 12px}
+.oculto{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+.legal{position:relative;z-index:2;display:flex;flex-wrap:wrap;gap:8px 28px;padding:24px var(--margen);background-color:var(--tinta);border-top:1px solid var(--linea-suave);font-size:16px;color:var(--gris-claro)}
+.legal a{display:inline-flex;align-items:center;min-height:44px;text-underline-offset:3px}
+.legal a:hover{color:var(--papel)}
+
+.wa-flotante{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom));z-index:6;display:grid;place-items:center;width:56px;height:56px;border-radius:50%;background-color:var(--verde);color:var(--tinta);box-shadow:0 12px 28px var(--sombra);transition:transform .35s var(--curva)}
+.wa-flotante:hover{transform:translateY(-3px)}
+.wa-flotante svg{width:30px;height:30px;display:block}
+
+.avance{position:fixed;right:var(--margen);top:50%;z-index:3;display:none;flex-direction:column;gap:12px;transform:translateY(-50%)}
+@media (min-width:900px){.avance{display:flex}}
+.avance a{display:block;width:2px;height:40px;background-color:var(--linea);transform:scaleY(.6);transition:background-color .4s var(--curva),transform .4s var(--curva)}
+.avance a[aria-current="true"]{background-color:var(--acento);transform:none}
+
+.js .caja > *{opacity:0;transform:translateY(22px);transition:opacity .9s var(--curva),transform .9s var(--curva)}
+.js .caja > *:nth-child(2){transition-delay:.08s}
+.js .caja > *:nth-child(3){transition-delay:.16s}
+.js .caja > *:nth-child(n+4){transition-delay:.24s}
+.js .visto .caja > *{opacity:1;transform:none}
+
+/* v6.1 (24-nov, Gerard «arréglalos»): el texto que se va por arriba (toda la caja en el 40 % de arriba de la pantalla) se apaga y no pisa la obra siguiente; el que entra por abajo no cambia */
+.js .pantalla .caja{transition:opacity .45s var(--curva)}
+.js .pantalla .caja.ida{opacity:0}
+/* v6.1: en ordenador la pared lleva su tarjeta, como «Así trabajamos», para que los rótulos 3D de detrás no se crucen con los chips */
+@media (min-width:900px){
+  .pared .caja{background-color:var(--v80);border:1px solid var(--linea-suave);border-radius:24px;padding:clamp(20px,2.4vw,36px)}
+  .pared .caja::before{display:none}
+  .pared .tarjeta{background:transparent;border-color:var(--linea)}
+}
+/* intro de la portada (punteros.js): el titular se escribe letra a letra, un puntero pulsa «Empezar». Dura 2,1 s con botón «Saltar» */
+.intro-on .portada .caja > *{transform:none!important;transition:none!important;opacity:1!important}
+.intro-on .portada h1:not(.listo){opacity:0!important}
+.intro-on .portada h1 .l{opacity:0}
+.intro-on .portada .boton{opacity:0!important;transition:none!important}
+.intro-fin *{transition:none!important}
+.punteros{position:fixed;inset:0;z-index:5;pointer-events:none;overflow:hidden}
+.punteros > *{position:absolute;left:0;top:0;will-change:transform,opacity}
+.punteros .caret{border-radius:2px;background-color:var(--acento)}
+.punteros .puntero{--c:var(--acento);width:0;height:0}
+.punteros .puntero svg{display:block;width:18px;height:22px;fill:var(--c);stroke:var(--tinta);stroke-width:1.2px;stroke-linejoin:round}
+.punteros .puntero span{position:absolute;left:14px;top:20px;white-space:nowrap;background-color:var(--c);color:var(--tinta);font:600 13px/1 var(--f-texto);padding:4px 8px;border-radius:8px}
+.punteros .onda{width:48px;height:48px;margin:-24px 0 0 -24px;border:2px solid var(--verde);border-radius:50%;opacity:0}
+.saltar{position:fixed;left:var(--margen);bottom:20px;z-index:7;min-height:44px;min-width:44px;padding:0 16px;border-radius:999px;border:1px solid var(--linea);background-color:var(--v78);color:var(--papel);font:600 15px/1 var(--f-texto);cursor:pointer;transition:background-color .3s var(--curva),color .3s var(--curva)}
+.saltar:hover{background-color:var(--papel);color:var(--tinta)}
+.saltar[hidden]{display:none}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  #escena,.boton,.avance a,.cabecera a.hablar,.negocios a,.t-pack,.wa-flotante{transition:none}
+  .js .caja > *{opacity:1;transform:none;transition:none}
+  .js .pasos li:not(.hecho)::after{opacity:1}
+  .tarjeta.entra{animation:none}
+}
+</style>
+</head>
+<body>
+<div id="respaldo" aria-hidden="true"></div>
+<canvas id="escena" aria-hidden="true"></canvas>
+<div class="velo" aria-hidden="true"></div>
+<div class="velo-portada" aria-hidden="true"></div>
+<div class="velo-arriba" aria-hidden="true"></div>
+
+<header class="cabecera">
+  <a href="#inicio" aria-label="Clipeya AI Lab, inicio"><img src="img/clipeya_spark_horizontal_oscuro.svg" alt="Clipeya AI Lab" width="107" height="26"></a>
+  <a class="hablar" href="servicios.html">Servicios</a>
+</header>
+<button class="saltar" type="button" hidden>Saltar</button>
+<a class="wa-flotante" href="https://wa.me/34600235411?text=Hola%2C%20vengo%20de%20la%20web%20de%20Clipeya." target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6a9.4 9.4 0 0 0-8.1 14.2L2.7 21.4l4.7-1.2A9.4 9.4 0 1 0 12 2.6z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><path d="M8.7 7.9c-.4.4-.7 1-.5 1.8.5 2.4 3.2 5.2 5.8 5.9.8.2 1.4-.1 1.8-.5l.6-.8-2-1.2-.9.8c-1-.4-2.2-1.5-2.7-2.5l.8-.9-1.1-2.1z" fill="currentColor"/></svg>
+</a>
+
+<nav class="avance" aria-label="Secciones">
+  <a href="#inicio" aria-label="Inicio"></a>
+  <a href="#trabajos" aria-label="Nolessia"></a>
+  <a href="#panel" aria-label="El panel de contactos"></a>
+  <a href="#presupuestos" aria-label="Presupuestos"></a>
+  <a href="#servicios" aria-label="Qué negocio tienes"></a>
+  <a href="#como" aria-label="Así trabajamos"></a>
+  <a href="#empezar" aria-label="Empezar"></a>
+</nav>
+
+<main>
+  <section class="pantalla portada" id="inicio" data-vista="arriba">
+    <div class="caja">
+      <h1>Tu producto, como de marca grande.</h1>
+      <div class="acciones">
+        <a class="boton" href="#empezar">Empezar</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="pantalla obra" id="trabajos" data-vista="obra:nolessia_pc">
+    <div class="caja">
+      <h2>Nolessia.</h2>
+      <p class="frase">Nuestra tienda, en vivo.</p>
+      <a class="boton claro" href="https://nolessia.com" target="_blank" rel="noopener">Abrir nolessia.com</a>
+    </div>
+  </section>
+
+  <section class="pantalla obra" id="panel" data-vista="obra:crm">
+    <div class="caja">
+      <h2>Cada contacto, en su sitio.</h2>
+      <p class="nota">Datos de ejemplo</p>
+    </div>
+  </section>
+
+  <section class="pantalla obra" id="presupuestos" data-vista="obra:abanico">
+    <div class="caja">
+      <h2>Siete pantallas, no un PDF.</h2>
+      <p class="etiqueta">Desde 100 €</p>
+      <p class="nota">Muestra ficticia</p>
+    </div>
+  </section>
+
+  <section class="pantalla pared" id="servicios" data-vista="pared">
+    <div class="caja">
+      <h2>¿Qué negocio tienes?</h2>
+      <!--NEGOCIOS:INICIO-->
+      <ul class="negocios"><li><a href="servicios.html#tienda" data-id="tienda" role="button" aria-expanded="false" aria-controls="t-tienda">Tienda</a></li><li><a href="servicios.html#curso" data-id="curso" role="button" aria-expanded="false" aria-controls="t-curso">Curso</a></li><li><a href="servicios.html#marca" data-id="marca" role="button" aria-expanded="false" aria-controls="t-marca">Marca</a></li><li><a href="servicios.html#agencia" data-id="agencia" role="button" aria-expanded="false" aria-controls="t-agencia">Agencia</a></li><li><a href="servicios.html#tareas" data-id="tareas" role="button" aria-expanded="false" aria-controls="t-tareas">Tareas</a></li><li><a href="servicios.html#chat" data-id="chat" role="button" aria-expanded="false" aria-controls="t-chat">Chat</a></li><li><a href="servicios.html#crm" data-id="crm" role="button" aria-expanded="false" aria-controls="t-crm">CRM</a></li></ul>
+      <div class="tarjetas"><div class="tarjeta" id="t-tienda" data-negocio="tienda" role="group" aria-label="Tienda" hidden><button class="t-cerrar" type="button" aria-label="Cerrar">×</button><p class="t-nombre">Tienda</p><div class="t-packs" role="radiogroup" aria-label="Pack"><button class="t-pack" type="button" role="radio" aria-checked="true" data-pack="A" data-href="https://wa.me/34600235411?text=Hola%2C%20me%20interesa%20el%20pack%20%C2%ABTienda%20en%20marcha%C2%BB%20de%20Clipeya.%20Mi%20enlace%20es%3A%20">Tienda en marcha</button><button class="t-pack" type="button" role="radio" aria-checked="false" data-pack="B" data-href="https://wa.me/34600235411?text=Hola%2C%20me%20interesa%20el%20pack%20%C2%ABTienda%20que%20crece%C2%BB%20de%20Clipeya.%20Mi%20enlace%20es%3A%20">Tienda que crece</button></div><a class="boton t-escribir" href="https://wa.me/34600235411?text=Hola%2C%20me%20interesa%20el%20pack%20%C2%ABTienda%20en%20marcha%C2%BB%20de%20Clipeya.%20Mi%20enlace%20es%3A%20" target="_blank" rel="noopener">Escribir</a></div><div class="tarjeta" id="t-curso" data-negocio="curso" role="group" aria-label="Curso" hidden><button class="t-cerrar" type="button" aria-label="Cerrar">×</button><p class="t-nombre">Curso</p><div class="t-packs" role="radiogroup" aria-label="Pack"><button class="t-pack" type="button" role="radio" aria-checked="true" data-pack="A" data-href="https://wa.me/34600235411?text=Hola%2C%20me%20interesa%20el%20pack%20%C2%ABEmbudo%20de%20captaci%C3%B3n%C2%BB%20de%20Clipeya.%20Mi%20enlace%20es%3A%20">Embudo de captación</button><button class="t-pack" type="button" role="radio" aria-checked="false" data-pack="B" data-href="https://wa.me/34600235411?text=Hola%2C%20me%20interesa%20el%20pack%20%C2%ABWebinar%20o%20v%C3%ADdeo%20de%20venta%C2%BB%20de%20Clipeya.%20Mi%20enlace%20es%3A%20">Webinar o vídeo</button></div><a class="boton t-escribir" href="https://wa.me/34600235411?text=Hola%2C%20me%20interesa%20el%20pack%20%C2%ABEmbudo%20de%20captaci%C3%B3n%C2%BB%20de%20Clipeya.%20Mi%20enlace%20es%3A%20" target="_blank" rel="noopener">Escribir</a></div><div class="tarjeta" id="t-marca" data-negocio="marca" role="group" aria-label="Marca" hidden><button class="t-cerrar" type="button" aria-label="Cerrar">×</button><p class="t-nombre">Marca</p><div class="t-packs" role="radiogroup" aria-label="Pack"><button class="t-pack" type="button" role="radio" aria-checked="true" data-pack="A" data-href="https://wa.me/34600235411?text=Hola%2C%20me%20interesa%20el%20pack%20%C2%ABTu%20enlace%20vende%C2%BB%20de%20Clipeya.%20Mi%20enlace%20es%3A%20">Tu enlace vende</button><button class="t-pack" type="button" role="radio" aria-checked="false" data-pack="B" data-href="https://wa.me/34600235411?text=Hola%2C%20me%20interesa%20el%20pack%20%C2%ABSistema%20de%20contactos%C2%BB%20de%20Clipeya.%20Mi%20enlace%20es%3A%20">Sistema de contactos</button></div><a class="boton t-escribir" href="https://wa.me/34600235411?text=Hola%2C%20me%20interesa%20el%20pack%20%C2%ABTu%20enlace%20vende%C2%BB%20de%20Clipeya.%20Mi%20enlace%20es%3A%20" target="_blank" rel="noopener">Escribir</a></div><div class="tarjeta" id="t-agencia" data-negocio="agencia" role="group" aria-label="Agencia" hidden><button class="t-cerrar" type="button" aria-label="Cerrar">×</button><p class="t-nombre">Agencia</p><div class="t-packs" role="radiogroup" aria-label="Pack"><button class="t-pack" type="button" role="radio" aria-checked="true" data-pack="A" data-href="https://wa.me/34600235411?text=Hola%2C%20me%20interesa%20el%20pack%20%C2%ABEquipo%205%C2%BB%20de%20Clipeya.%20Mi%20enlace%20es%3A%20">5 piezas al mes</button><button class="t-pack" type="button" role="radio" aria-checked="false" data-pack="B" data-href="https://wa.me/34600235411?text=Hola%2C%20me%20interesa%20el%20pack%20%C2%ABEquipo%2010%C2%BB%20de%20Clipeya.%20Mi%20enlace%20es%3A%20">10 piezas al mes</button></div><a class="boton t-escribir" href="https://wa.me/34600235411?text=Hola%2C%20me%20interesa%20el%20pack%20%C2%ABEquipo%205%C2%BB%20de%20Clipeya.%20Mi%20enlace%20es%3A%20" target="_blank" rel="noopener">Escribir</a></div><div class="tarjeta" id="t-tareas" data-negocio="tareas" role="group" aria-label="Tareas" hidden><button class="t-cerrar" type="button" aria-label="Cerrar">×</button><p class="t-nombre">Tareas</p><div class="t-packs" role="radiogroup" aria-label="Pack"><button class="t-pack" type="button" role="radio" aria-checked="true" data-pack="A" data-href="https://wa.me/34600235411?text=Hola%2C%20me%20interesa%20el%20pack%20%C2%ABTareas%20en%20autom%C3%A1tico%C2%BB%20de%20Clipeya.%20Mi%20enlace%20es%3A%20">Tareas en automático</button><button class="t-pack" type="button" role="radio" aria-checked="false" data-pack="B" data-href="https://wa.me/34600235411?text=Hola%2C%20me%20interesa%20el%20pack%20%C2%ABNegocio%20en%20autom%C3%A1tico%C2%BB%20de%20Clipeya.%20Mi%20enlace%20es%3A%20">Negocio en automático</button></div><a class="boton t-escribir" href="https://wa.me/34600235411?text=Hola%2C%20me%20interesa%20el%20pack%20%C2%ABTareas%20en%20autom%C3%A1tico%C2%BB%20de%20Clipeya.%20Mi%20enlace%20es%3A%20" target="_blank" rel="noopener">Escribir</a></div><div class="tarjeta" id="t-chat" data-negocio="chat" role="group" aria-label="Chat" hidden><button class="t-cerrar" type="button" aria-label="Cerrar">×</button><p class="t-nombre">Chat</p><div class="t-packs" role="radiogroup" aria-label="Pack"><button class="t-pack" type="button" role="radio" aria-checked="true" data-pack="A" data-href="https://wa.me/34600235411?text=Hola%2C%20me%20interesa%20el%20pack%20%C2%ABResponde%20solo%C2%BB%20de%20Clipeya.%20Mi%20enlace%20es%3A%20">Responde solo</button><button class="t-pack" type="button" role="radio" aria-checked="false" data-pack="B" data-href="https://wa.me/34600235411?text=Hola%2C%20me%20interesa%20el%20pack%20%C2%ABChat%20que%20vende%C2%BB%20de%20Clipeya.%20Mi%20enlace%20es%3A%20">Chat que vende</button></div><a class="boton t-escribir" href="https://wa.me/34600235411?text=Hola%2C%20me%20interesa%20el%20pack%20%C2%ABResponde%20solo%C2%BB%20de%20Clipeya.%20Mi%20enlace%20es%3A%20" target="_blank" rel="noopener">Escribir</a></div><div class="tarjeta" id="t-crm" data-negocio="crm" role="group" aria-label="CRM" hidden><button class="t-cerrar" type="button" aria-label="Cerrar">×</button><p class="t-nombre">CRM</p><div class="t-packs" role="radiogroup" aria-label="Pack"><button class="t-pack" type="button" role="radio" aria-checked="true" data-pack="A" data-href="https://wa.me/34600235411?text=Hola%2C%20me%20interesa%20el%20pack%20%C2%ABContactos%20en%20orden%C2%BB%20de%20Clipeya.%20Mi%20enlace%20es%3A%20">Contactos en orden</button><button class="t-pack" type="button" role="radio" aria-checked="false" data-pack="B" data-href="https://wa.me/34600235411?text=Hola%2C%20me%20interesa%20el%20pack%20%C2%ABTodo%20medido%C2%BB%20de%20Clipeya.%20Mi%20enlace%20es%3A%20">Todo medido</button></div><a class="boton t-escribir" href="https://wa.me/34600235411?text=Hola%2C%20me%20interesa%20el%20pack%20%C2%ABContactos%20en%20orden%C2%BB%20de%20Clipeya.%20Mi%20enlace%20es%3A%20" target="_blank" rel="noopener">Escribir</a></div></div>
+      <!--NEGOCIOS:FIN-->
+    </div>
+  </section>
+
+  <section class="pantalla como" id="como" data-vista="sala:300:0">
+    <div class="pegado">
+      <div class="caja">
+        <h2>Así trabajamos.</h2>
+        <ol class="pasos">
+          <li><span class="paso">Enlace</span></li>
+          <li><span class="paso">Fallos</span></li>
+          <li><span class="paso">Inicio</span></li>
+          <li><span class="paso">Mes</span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="pantalla obra" id="empezar" data-vista="final:hueco">
+    <div class="caja">
+      <h2>Aquí va tu tienda.</h2>
+      <p class="frase">3 capturas gratis.</p>
+      <form class="enlace" id="form-enlace" novalidate>
+        <label class="oculto" for="campo-enlace">El enlace de tu tienda o tu Instagram</label>
+        <input id="campo-enlace" name="enlace" type="text" inputmode="url" autocomplete="url" placeholder="Tu enlace">
+        <button class="boton" type="submit">Enviar por WhatsApp</button>
+      </form>
+      <p class="error" id="error-enlace" hidden>Pega un enlace (empieza por http, www o @).</p>
+    </div>
+  </section>
+</main>
+<footer class="legal"><a href="servicios.html">Servicios</a><a href="servicios.html#legal">Aviso legal</a></footer>
+
+<script>
+  // Sin el 3D la página se lee igual: el texto ya está en el HTML y el respaldo es una imagen fija.
+  document.documentElement.classList.add('js', 'en-portada');
+  // intro de punteros (punteros.js, 2,1 s): solo una vez por carga, arriba del todo, sin «reducir movimiento» ni ?grabar / ?sinintro
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches && !/[?&](grabar|sinintro)/.test(location.search) && scrollY < 8) {
+    document.documentElement.classList.add('intro-on');
+    // red de seguridad: si punteros.js no llega a arrancar, la portada se muestra igual
+    setTimeout(() => { if (!window.__intro) document.documentElement.classList.remove('intro-on'); }, 4000);
+  }
+  const secciones = [...document.querySelectorAll('[data-vista]')];
+  const marcas = [...document.querySelectorAll('.avance a')];
+  // una franja a media pantalla (30 % del alto): sirve para secciones más altas que la pantalla y no se salta con un scroll rápido
+  const vigia = new IntersectionObserver((entradas) => {
+    for (const e of entradas) {
+      if (!e.isIntersecting) continue;
+      e.target.classList.add('visto');
+      const i = secciones.indexOf(e.target);
+      marcas.forEach((m, k) => m.setAttribute('aria-current', String(k === i)));
+      document.documentElement.classList.toggle('en-portada', i === 0);
+    }
+  }, { rootMargin: '-35% 0px -35% 0px', threshold: 0 });
+  secciones.forEach((s) => vigia.observe(s));
+  setTimeout(() => secciones[0].classList.add('visto'), 60);
+  // red de seguridad: con un scroll muy rápido (o un móvil lento) una sección puede cruzar la franja entre dos fotogramas
+  // y quedarse sin «visto». En cada scroll se marcan todas las que ya han asomado por encima del 75 % de la pantalla.
+  let repasoPendiente = false;
+  const repasar = () => {
+    repasoPendiente = false;
+    const tope = innerHeight * 0.75;
+    for (const s of secciones) if (!s.classList.contains('visto') && s.getBoundingClientRect().top < tope) s.classList.add('visto');
+    pasos();
+  };
+  // el repaso de «visto» es solo leer 7 cajas y poner una clase: se hace en el propio evento de scroll, no en un fotograma
+  // (con la galería 3D a pocos fps un fotograma tarda y el texto se quedaba oculto)
+  // v6.1: una caja cuyo borde de abajo ya está por encima del 40 % de la pantalla se apaga (clase «ida»); al volver a bajar, se enciende
+  const cajas = [...document.querySelectorAll('main .caja')];
+  const marcarIdas = () => {
+    // solo se apaga si ya está entrando el texto siguiente (su borde de arriba entre el 40 % y el 90 % de la pantalla): nunca queda la pantalla sin texto
+    const h = innerHeight, tope = h * 0.4;
+    const rs = cajas.map((c) => c.getBoundingClientRect());
+    const entra = rs.some((r) => r.top >= tope && r.top < h * 0.9);
+    cajas.forEach((c, i) => c.classList.toggle('ida', rs[i].bottom < tope && entra));
+  };
+  marcarIdas();
+  addEventListener('resize', marcarIdas, { passive: true });
+  addEventListener('scroll', () => {
+    marcarIdas();
+    const tope = innerHeight * 0.75;
+    for (const s of secciones) if (!s.classList.contains('visto') && s.getBoundingClientRect().top < tope) s.classList.add('visto');
+    if (!repasoPendiente) { repasoPendiente = true; requestAnimationFrame(repasar); }
+  }, { passive: true });
+  addEventListener('load', repasar);
+
+  // pantalla 6: un número se rellena al llegar (1 al entrar, y uno más cada cuarto del recorrido)
+  const comoSec = document.getElementById('como');
+  const pasosLi = [...document.querySelectorAll('.pasos li')];
+  function pasos() {
+    const p = Math.min(1, Math.max(0, (scrollY - comoSec.offsetTop) / Math.max(1, comoSec.offsetHeight - innerHeight)));
+    const n = scrollY + innerHeight * 0.5 < comoSec.offsetTop ? 0 : Math.min(pasosLi.length, 1 + Math.floor(p * pasosLi.length));
+    pasosLi.forEach((li, i) => li.classList.toggle('hecho', i < n));
+  }
+  pasos();
+
+  // pantalla 5: elegir negocio abre UNA tarjeta y le dice a la galería a qué panel saltar (app.js escucha «negocio»)
+  const chips = [...document.querySelectorAll('.negocios a[data-id]')];
+  const tarjetas = new Map([...document.querySelectorAll('.tarjeta')].map((t) => [t.dataset.negocio, t]));
+  let abierta = null;
+  function cerrar() {
+    if (!abierta) return;
+    tarjetas.get(abierta).hidden = true; abierta = null;
+    document.getElementById('servicios').classList.remove('abierta');
+    chips.forEach((c) => c.setAttribute('aria-expanded', 'false'));
+    dispatchEvent(new CustomEvent('negocio', { detail: { id: null } }));
+  }
+  function elegir(id) {
+    if (!tarjetas.has(id)) return;
+    if (abierta === id) { cerrar(); return; }
+    if (abierta) tarjetas.get(abierta).hidden = true;
+    abierta = id;
+    const t = tarjetas.get(id);
+    document.getElementById('servicios').classList.add('abierta');
+    t.hidden = false; t.classList.remove('entra'); void t.offsetWidth; t.classList.add('entra');
+    chips.forEach((c) => c.setAttribute('aria-expanded', String(c.dataset.id === id)));
+    dispatchEvent(new CustomEvent('negocio', { detail: { id } }));
+  }
+  chips.forEach((c) => c.addEventListener('click', (ev) => { ev.preventDefault(); elegir(c.dataset.id); }));
+  addEventListener('negocio-pedir', (ev) => elegir(ev.detail.id));
+  tarjetas.forEach((t) => {
+    const escribir = t.querySelector('.t-escribir');
+    const packs = [...t.querySelectorAll('.t-pack')];
+    packs.forEach((b) => b.addEventListener('click', () => {
+      packs.forEach((o) => o.setAttribute('aria-checked', String(o === b)));
+      escribir.href = b.dataset.href;
+    }));
+    t.querySelector('.t-cerrar').addEventListener('click', cerrar);
+  });
+  addEventListener('keydown', (ev) => { if (ev.key === 'Escape') cerrar(); });
+
+  const form = document.getElementById('form-enlace');
+  const campo = document.getElementById('campo-enlace');
+  const error = document.getElementById('error-enlace');
+  // al escribir el enlace, el hueco de la pared solo se ilumina (no se captura nada en vivo)
+  campo.addEventListener('input', () => dispatchEvent(new CustomEvent('hueco-lleno', { detail: { lleno: campo.value.trim().length > 3 } })));
+  form.addEventListener('submit', (ev) => {
+    ev.preventDefault();
+    const v = campo.value.trim();
+    if (!/^(https?:\/\/|www\.|@)\S+/i.test(v)) { error.hidden = false; campo.focus(); return; }
+    error.hidden = true;
+    const texto = 'Hola, os mando mi enlace para que me devolváis 3 capturas de lo que ve mi cliente en el móvil: ' + v;
+    window.open('https://wa.me/34600235411?text=' + encodeURIComponent(texto), '_blank', 'noopener');
+  });
+</script>
+<script src="punteros.js" defer></script>
+<script type="module" src="app.js"></script>
+</body>
+</html>
